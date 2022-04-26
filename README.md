@@ -17,11 +17,11 @@
 
 1-Analyzing traffic source by campaign
 
-2-calculating conversions 
+2-Calculating conversions 
 
 3-Bid analysis & optimization 
 
-4-pivoting the results 
+4-Pivoting the results 
 
 5-Paid traffic analysis by device type
 
