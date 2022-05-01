@@ -39,3 +39,5 @@
 4-analyzing bounce rate and landing page
 
 5-building conversion funnel
+
+6-Creating Temp. Table in SQL
