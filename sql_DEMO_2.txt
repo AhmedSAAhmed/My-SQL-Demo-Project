@@ -1,0 +1,121 @@
+
+SELECT *
+FROM website_sessions;
+
+
+
+SELECT 
+  utm_source,
+  utm_campaign,
+  http_referer,
+  COUNT(distinct website_session_id) AS sessions
+FROM website_sessions
+WHERE created_at < '2012-04-12'
+GROUP BY 1,2
+ORDER BY sessions desc;
+
+
+#digging deeper to the data
+
+SELECT 
+   COUNT(distinct website_sessions.website_session_id) AS sessions,
+   COUNT(distinct order_id) AS orders
+   COUNT(distinct order_id)/COUNT(distinct website_sessions.website_session_id) AS CVR
+FROM website_sessions
+   left join orders
+         on website_sessions.website_sessions_id = orders.website_session_id
+WHERE created_at < '2012-04-12'
+   AND website_sessions.utm_source = 'gsearch'
+   AND website_sessions.utm_campaign = 'nonbrand'
+--------------------------------------------------------------------------------------------------
+#Bid Analysis
+
+SELECT *
+FROM website_sessions
+WHERE website_session_id between 100000 and 115000
+
+Substracting the year and month 
+
+
+SELECT 
+      year(created_at),
+      month(created_at),
+      week(created_at),
+      COUNT(distinct website_session_id) AS sessions
+FROM website_sessions
+WHERE website_session_id between 100000 and 115000
+GROUP BY 1,2
+
+
+SELECT 
+      COUNT(distinct website_session_id) AS sessions
+      year(created_at),
+      week(created_at),
+      min(Date(created_at)) AS week_start
+FROM website_sessions
+WHERE website_session_id between 100000 and 115000
+GROUP BY 2,3
+
+#pivoting 
+
+
+SELECT 
+     order_id,
+     primary_product_id,
+     item_purchasef
+     count(distinct case when items_purchased = 1 then order_id ELSE NULL END) AS sngle_item_orders,
+     count(distinct case when items_purchased = 2 then order_id ELSE NULL END) AS two_item_orders
+FROM orders
+WHERE order_id between 31000 and 32000 
+GROUP BY 2
+
+
+#calculating the CVR by device type
+
+SELECT 
+    website_sessions.device_type,
+    count(distinct website_sessions.website_session_id) AS sessions,
+    count(distinct orders.order_id) AS orders,
+    count(distinct orders.order_id)/ count(distinct website_sessions.website_session_id) CVR
+FROM website_sessions
+   left join orders
+        on website_sessions.website_sessions_id = orders.website_sessions_id
+WHERE created_at < '2012-05-11'
+    AND utm_source 'gsearch'
+    AND utm_campaign 'nonbrand'
+GROUP BY 1
+
+#Trend analysis
+
+SELECT 
+      year(created_at) AS yr,
+      week(created_at) AS wk,
+      min(date (created_at)) AS week_start,
+      count(distinct case when device_type = 'desktop' then website_session_id else will end) AS desktop_sessions,
+      count(distinct case when device_type = 'mobile' then website_session_id else will end) AS mobile_sessions,
+      COUNT(distinct website_sessions_id) AS sessions
+--Desktop
+   FROM wesites_sessions
+     WHERE created_at < '2012-05-09' AND created_at > '2012-04-15'
+           AND ute_source = 'gsearch'
+           AND ute_campaing = 'nonbrand'
+         GROUP BY 1,2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
