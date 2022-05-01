@@ -26,3 +26,16 @@
 5-Paid traffic analysis by device type
 
 6-Trend Analysis
+------------------------------------------------------------------------------------------------
+
+## Analyzing website content
+
+1-Analyzing website pageviews
+
+2-Finding most viewed pages 
+
+3-Finding top entry pa\ges 
+
+4-analyzing bounce rate and landing page
+
+5-building conversion funnel
