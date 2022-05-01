@@ -28,7 +28,7 @@
 6-Trend Analysis
 
 ------------------------------------------------------------------------------------------------
-
+--
 ## Analyzing website content
 
 1-Analyzing website pageviews
