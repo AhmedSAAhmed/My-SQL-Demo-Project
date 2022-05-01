@@ -26,6 +26,7 @@
 5-Paid traffic analysis by device type
 
 6-Trend Analysis
+
 ------------------------------------------------------------------------------------------------
 
 ## Analyzing website content
