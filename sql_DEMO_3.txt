@@ -1,0 +1,123 @@
+SELECT 
+    pageview_url,
+    count(distinct website_pageview_id) AS PVS
+  FROM website_pageview
+  WHERE website_pageview_id < 1000
+  GROUP BY 1
+  ORDER BY PVS desc;
+
+
+#Creating_Temp_table
+
+SELECT *
+FROM website_pageviews 
+WHERE website_pageview_id < 1000;
+
+SELECT 
+   pageview_url,
+   count(distinct website_pageview_is) AS PVS
+FROM website_pageviews 
+WHERE website_pageview_id < 1000
+ GROUP BY 1
+ ORDER BY PVS desc;
+
+
+SELECT
+   website_session_id,
+   min(website_pageview_id) AS min_PV_id
+ FROM website_pageviews
+ WHERE website_pageview_id < 1000
+ GROUP BY 1
+
+
+create temporary table first_pageview
+SELECT
+   website_session_id,
+   min(website_pageview_id) AS min_PV_id
+ FROM website_pageviews
+ WHERE website_pageview_id < 1000
+ GROUP BY 1
+
+
+
+
+select 
+    count(distinct(first_pageview.website_session_id) AS sessions,
+    website_pageviews.pageview_url AS landing_page
+  from first_pageview
+     left join website_pageviews
+          on first_paeview.min_pv_id = website_pageviews.website_pageview_id
+         GROUP BY website_pageviews.pageview_url
+
+------------------------------------------------------------------------------------------------
+
+--step 1: find the first website_pagevie_id for relevant sessions
+--step 2: identify the landing page for each session
+--step 3: counting pageviews for each session to identify 'bounces'
+--step 4:summarizing total sessions and bounced sessions by LP
+
+
+
+#step 1 
+create temporary table first_pageview_id
+select 
+   website_sessions_id,
+   min(website_pageview_id) AS min_pageview_id
+ from website_psgeviews
+   inner join website_sessions
+        on website_sessions.website_session_id = website_pageviews.website_sessions_id
+        AND website_sessions.created_at between '2014-01-01' AND '2014-02-01'
+     GROUP BY website_sessions.website_session_id
+
+select * from first_pageview _id
+
+
+select
+    first_pageview_id.website_session_id,
+    website_pageviews.pageview_url AS landing page
+     from first_pageview_id
+        left join website_pageviews
+           on website_pageviews = first_pageview_id.min_pageview_id
+
+
+Create temporary table sessions_w_LP_Demo
+select
+    first_pageview_id.website_session_id,
+    website_pageviews.pageview_url AS landing_page
+  from first_pageview_id
+     left join website_pageviews
+           on website_pageviews.website_pageview_id = first_pageview_id.min_pageview_id;
+
+
+--select * from sessions_w_LP_Demo
+
+create temporary table bounced_sessions
+select
+   sessions_w_LP_Demo.website_sessions_id,
+   sessions_w_LP_Demo.landing_page,
+   count(website_pageviews.website_pageview_id) AS count_of_pages_viewed
+  from sessions_w_LP_Demo
+      left join website_pageviews
+           on website_pageviews.website_sessions_id = sessions_w_LP_Demo.website_session_id
+            GROUP BY 1,2
+      HAVING count(website_pageviews.website_pageview_id) =1;
+
+--SELECT * from bounced_sessions
+
+select 
+     count(distinct sessions_w_LP_Demo.website_session_id) AS sessions,
+     count(distinct bounced_sessions.website_sessions_id) AS bounced_sessions,
+     sessions_w_LP_Demo.landing_page
+  from sessions_w_LP_Demo
+     left join bounced_sessions
+          on sessions_w_LP_Demo.website_session_id = bounced_sessions.website_session_id
+         GROUP BY 3
+Order by sessions_w_LP_Demo.website_session_id;
+
+#lander 3 is the high bounce rate 
+
+
+
+
+
+
