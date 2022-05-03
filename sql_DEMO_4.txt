@@ -1,0 +1,41 @@
+
+Select 
+  min(created_at) AS first_created_at,
+  min(website_pageview_id) AS first_pageview_id,
+from website_pageview
+where pageview_url = '/lander-1'
+  AND created at is not null;
+
+--first pv is = 23504
+--first created at = '2012-06-19 00:35:54'
+
+select 
+  website_pageviews.website_sessions_id,
+  min(website_pageviews.website_pageview_id) AS win_pageview_id
+from website_pageviews
+  inner join website_sessions
+    on website_sessions.website_session_id = website_pageviews.website_sessions_id
+      AND website_sessisons.created_at < '2012-07-28'
+      AND utm_source = 'gsearch'
+      AND utm_campaign = 'nonbrand'
+      AND website_pageviews.website_pageviews_id > 23504
+ GROUP BY website_pageviews.website_sessions_id;
+
+
+------------------------------------------------------------------
+--Building conversion funnel
+
+SELECT 
+   website_sessions.website_session_id,
+   website_pageviews.pageview_url,
+   website_pageviews.created_at AS pageview_created_at
+from website_sessions
+   leftjoin website_pageviews
+      on website_sessions.website_session_id = website_pageview.website_session_id
+      case when pageview_url = '/product' then 1 else 0 AS fuzzy_page,
+      case when pageview_url = '/the-original-mr-fuzzy' then 1 else 0 AS cart_page,
+      case when pageview_url = '/cart' then 1 else 0 AS product_page
+  where website_sessions.created_at between '2014-01-01' AND '2014-02-01'
+  AND wesite_pageview.pageview_url in ('/lander-2','/product','/the-original-mr-fuzzy','/cart')
+ORDER BY 
+    website_sessions.website_session_id;
