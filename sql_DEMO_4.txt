@@ -30,7 +30,7 @@ SELECT
    website_pageviews.pageview_url,
    website_pageviews.created_at AS pageview_created_at
 from website_sessions
-   leftjoin website_pageviews
+   left join website_pageviews
       on website_sessions.website_session_id = website_pageview.website_session_id
       case when pageview_url = '/product' then 1 else 0 AS fuzzy_page,
       case when pageview_url = '/the-original-mr-fuzzy' then 1 else 0 AS cart_page,
