@@ -36,13 +36,23 @@
 
 3-Finding top entry pages 
 
-4-analyzing bounce rate and landing page
+4-Analyzing bounce rate and landing page
 
-5-building conversion funnel
+5-Building conversion funnel
 
 6-Creating Temp. Table in SQL
 
 ------------------------------------------------------------------------------------------------
 ## Channel analysis and managment
 
-1-
+1-Analyzing channel portfolio
+
+2-Comparing channel characteristic
+
+3-Cross-Channel bid optimization
+
+4-Channel portfolio trend analysis
+
+5-Direct-Driven traffic analysis
+
+6-Brand-Driven traffic analysis
