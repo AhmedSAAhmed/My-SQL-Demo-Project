@@ -34,10 +34,15 @@
 
 2-Finding most viewed pages 
 
-3-Finding top entry pa\ges 
+3-Finding top entry pages 
 
 4-analyzing bounce rate and landing page
 
 5-building conversion funnel
 
 6-Creating Temp. Table in SQL
+
+------------------------------------------------------------------------------------------------
+## Channel analysis and managment
+
+1-
