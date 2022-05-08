@@ -46,12 +46,12 @@ where created_at between '2012-08-22' AND '2012-11-29'\par
   AND utm_campaign = 'nonbrand'\par
 group by yearweek(created_at) \par
 --------------------------------------------------------------------------------------------------------------
-SELECT\par
-  utm_source,\par
-  count(distinct website_sessions_id) AS sessions,\par
-  count(distinct case when device_type = 'mobile_phone' then website_sessions_id ELSE NULL END) AS mobile_sessions,\par
---count(distinct case when device_type = 'mobile_phone' then website_sessions_id ELSE NULL END) /count(distinct website_sessions_id) AS pct_mobile\par
-\par
+SELECT
+  utm_source,
+  count(distinct website_sessions_id) AS sessions,
+  count(distinct case when device_type = 'mobile_phone' then website_sessions_id ELSE NULL END) AS mobile_sessions,
+  count(distinct case when device_type = 'mobile_phone' then website_sessions_id ELSE NULL END) /count(distinct website_sessions_id) AS pct_mobile
+
 FROM website_sessions
 WHERE created_at between '2012-08-22' AND '2012-11-30
    AND utm_campaign = 'non-brand'
