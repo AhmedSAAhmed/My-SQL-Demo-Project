@@ -25,9 +25,9 @@ Select\par
 \par
 Select\par
     utm_content,\par
-    count(distinct website_sessions.website_sessions_id)  AS sessions,\par
-    count(distinct orders.order_id) AS orders,\par
-    count(distinct orders.order_id) /count(distinct website_sessions.website_sessions_id) AS cvr \par
+    count(distinct website_sessions.website_sessions_id)  AS sessions,
+    count(distinct orders.order_id) AS orders,
+    count(distinct orders.order_id) /count(distinct website_sessions.website_sessions_id) AS cvr
     from  website_sessions\par
     where website_sessions.created_at between '2014-01-01' and '2014--02-01'\par
     group by 1 \par
