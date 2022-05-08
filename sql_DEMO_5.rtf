@@ -30,8 +30,8 @@ Select
     count(distinct orders.order_id) /count(distinct website_sessions.website_sessions_id) AS cvr
     from  website_sessions
     where website_sessions.created_at between '2014-01-01' and '2014--02-01'
-    group by 1 \par
-   orders by sessions desc;\par
+    group by 1 
+   orders by sessions desc;
 ----------------------------------------------------------------------------------------------------------
 SELECT
   --yearweek(created_at) AS yrwk,
