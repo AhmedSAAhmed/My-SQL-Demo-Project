@@ -52,9 +52,9 @@ SELECT\par
   count(distinct case when device_type = 'mobile_phone' then website_sessions_id ELSE NULL END) AS mobile_sessions,\par
 --count(distinct case when device_type = 'mobile_phone' then website_sessions_id ELSE NULL END) /count(distinct website_sessions_id) AS pct_mobile\par
 \par
-FROM website_sessions\par
-WHERE created_at between '2012-08-22' AND '2012-11-30\par
-   AND utm_campaign = 'non-brand'\par
+FROM website_sessions
+WHERE created_at between '2012-08-22' AND '2012-11-30
+   AND utm_campaign = 'non-brand'
 group by 1 ;
 
 
