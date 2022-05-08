@@ -1,6 +1,6 @@
- #analyzing channel portfolio\par
-\par
-select  
+ #analyzing channel portfolio
+ 
+select * 
 from website_sessions;
 \par
 Select\par
@@ -32,7 +32,7 @@ Select\par
     where website_sessions.created_at between '2014-01-01' and '2014--02-01'\par
     group by 1 \par
    orders by sessions desc;\par
-----------------------------------------------------------------------------------------------------------\par
+----------------------------------------------------------------------------------------------------------
 SELECT\par
   --yearweek(created_at) AS yrwk,\par
   min(date(created_at)) AS week_start_day\par
