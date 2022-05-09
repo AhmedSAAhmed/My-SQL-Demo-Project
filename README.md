@@ -71,6 +71,6 @@
 
 5-Product portfolio & cross-selling analysis
 
-6-product portfolio Expansion
+6-Product portfolio Expansion
 
 7-product refund rate analysis
