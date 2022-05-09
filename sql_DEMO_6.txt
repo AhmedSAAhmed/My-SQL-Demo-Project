@@ -1,0 +1,79 @@
+--convertion rate by all devices type
+select 
+  website_sessions.utm_source,
+  website_sessions.device_type,
+count(distinct website_sessions.website_session_id) AS sessions,
+count(distinct orders.order_id) AS orders,
+count(distinct orders.order_id)/count(distinct website_sessions.website_session_id)  AS CVR
+From website_sessions
+ left join orders
+   on website_sessions.website_sessions_id = orders.website_session_id
+WHERE website_sessions.created_at between '2012-08-22' and '2012-09-19'
+ AND utm_campaign = 'non-brand'
+group by 1,2
+----------------------------------------------------------------------------------------------------------
+SELECT 
+         yearweek(created_at) AS yrwk,
+        min(date(created_at)) AS week_start_date,
+       count(distinct case when utm_source = 'gsearch' AND device_type = ' desktop' then website_session_id else null end) AS g_dtop_sessions,
+      count(distinct case when utm_source = 'bsearch' AND device_type = ' desktop' then website_session_id else null end) AS b_dtop_sessions,
+count(distinct case when utm_source = 'bsearch' AND device_type = ' desktop' then website_session_id else null end)/count(distinct case when utm_source = 'gsearch' AND device_type = ' desktop' then website_session_id else null end)  AS pct_of_dtop,
+count(distinct case when utm_source = 'gsearch' AND device_type = ' mobile_phone' then website_session_id else null end) AS g_mob_session,
+count(distinct case when utm_source = 'bsearch' AND device_type = ' mobile_phone' then website_session_id else null end) AS b_mob_session,
+count(distinct case when utm_source = 'bsearch' AND device_type = ' mobile_phone' then website_session_id else null end)/count(distinct case when utm_source = 'gsearch' AND device_type = ' mobile_phone' then website_session_id else null end) AS pct_of_mob
+
+FROM website_sessions
+WHERE created_at between '2012-11-04' AND '2012-12-22'
+AND utm_campaign = 'non-brand'
+GROUP BY 1
+-------------------------------------------------------------------------------------------------------
+select 
+ CASE 
+    WHEN http_referer IS NULL THEN 'direct_type_in' ELSE 'either' END
+    WHEN http_referer = 'https://www.gsearch.com' THEN 'gsearch_organic'
+    WHEN http_referer = 'https://www.bsearch.com' THEN 'bsearch_organic'
+    ELSE 'other'
+END AS traffic_type
+count(distinct website_session_id) AS sessions
+from website_sessions
+where website_sessions_id between 100000 AND 115000
+AND utm_source IS NULL
+GROUP BY 1
+ORDER BY 2 desc;
+
+Select website_session_id,
+    created_at,
+    year(website_sessions.created_at) AS yr,
+    month(website_sessions.created_at) AS mo,
+    week(website_sessions.created_at) AS wk,
+    min(date(website_sessions.created_at)) AS weekstart,
+   -- hour(website_sessions.created_at) AS hr,
+    count(distinct website_sessions.website_session_id) AS sessions,
+    count(distinct website_sessions.website_session_id) AS orders
+FROM website_sessions
+      left join orders 
+      on website_session.website_session_id = orders.website_sessions_id
+      WHERE website_sessions.created_at < '2013-01-01'
+     GROUP BY 1,2,3
+
+SELECT 
+  hr, 
+ROUND(avg(CASE WHEN wkday = 0 THEN sessions ELSE NULL END),1) AS mon,
+ROUND(avg(CASE WHEN wkday = 1 THEN sessions ELSE NULL END),1) AS tue,
+ROUND(avg(CASE WHEN wkday = 2 THEN sessions ELSE NULL END),1) AS wed,
+ROUND(avg(CASE WHEN wkday = 3 THEN sessions ELSE NULL END),1) AS thu,
+ROUND(avg(CASE WHEN wkday = 4 THEN sessions ELSE NULL END),1) AS fri,
+ROUND(avg(CASE WHEN wkday = 5 THEN sessions ELSE NULL END),1) AS sat,
+ROUND(avg(CASE WHEN wkday = 6 THEN sessions ELSE NULL END),1) AS sun
+FROM(
+select
+     date(created_at) AS created_date,
+     weekday(created_at) AS wkday,
+     hour(created_at) AS hr,
+    count(distinct website_session_id) AS sessions
+FROM website_sessions
+WHERE created_at between '2012-09-15' AND '2012-11-15'
+GROUP BY 1,2,3 ) As hourly_sessions
+GROUP BY 1 
+ORDER BY 1 
+     
