@@ -67,7 +67,7 @@
 
 3-Analyzing website pathing product level
 
-4-building convertions funnel
+4-Building convertions funnel
 
 5-product portfolio & cross-selling analysis
 
