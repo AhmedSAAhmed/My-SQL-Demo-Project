@@ -65,7 +65,7 @@
 
 2-Sales analysis
 
-3-Analyzing website pathing ./ product level
+3-Analyzing website pathing . product level
 
 4-building convertions funnel
 
