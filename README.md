@@ -56,3 +56,21 @@
 5-Direct-Driven traffic analysis
 
 6-Brand-Driven traffic analysis
+
+------------------------------------------------------------------------------------------------
+
+## product analysis
+
+1-Analyzing product (sales & launching)
+
+2-Sales analysis
+
+3-Analyzing website pathing ./. product level
+
+4-building convertions funnel
+
+5-product portfolio & cross-selling analysis
+
+6-product portfolio Expansion
+
+7-product refund rate analysis
