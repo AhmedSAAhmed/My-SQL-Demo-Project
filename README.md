@@ -69,7 +69,7 @@
 
 4-Building convertions funnel
 
-5-product portfolio & cross-selling analysis
+5-Product portfolio & cross-selling analysis
 
 6-product portfolio Expansion
 
