@@ -1,4 +1,4 @@
-# My-SQL-Demo-Project
+# My SQL Demo Project
 ## Analyzing the web traffic with SQL
 
 1-We are going to analyze website performance.
