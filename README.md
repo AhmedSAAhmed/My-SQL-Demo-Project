@@ -7,7 +7,7 @@
 
 3-Analyzing Business patterns and seasonality
 
-4-product analysis
+4-Product analysis
 
 5-User analysis 
 
