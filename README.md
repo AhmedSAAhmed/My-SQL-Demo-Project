@@ -74,3 +74,17 @@
 6-Product portfolio Expansion
 
 7-Product refund rate analysis
+
+------------------------------------------------------------------------------------------------
+
+## User Analysis
+
+1-Analyzing repeat visit & purshase behavior
+
+2-Analyzing time to repeat
+
+3-Analyzing repeat channel behavior
+
+4-Building converstion funnel
+
+5-Analyzing new & repeat conversion rate
