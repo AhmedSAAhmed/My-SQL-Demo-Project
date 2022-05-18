@@ -22,7 +22,7 @@ from website_pageviews
  GROUP BY website_pageviews.website_sessions_id;
 
 
-------------------------------------------------------------------
+--------------------------------------------------------------------------
 --Building conversion funnel
 
 SELECT 
