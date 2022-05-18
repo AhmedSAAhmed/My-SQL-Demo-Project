@@ -1,4 +1,4 @@
-#identify reapeted customers
+#identify rapeated customers
 
 select *
 from website_sessions
