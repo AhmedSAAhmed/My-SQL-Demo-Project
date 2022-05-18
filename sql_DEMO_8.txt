@@ -15,7 +15,6 @@ select
     new_sessions.user_id
     new_sessions.website_session_id AS new_sessions_id
     website_sessions.website_sessions_id as repeated_session
-
 from 
 (select user_id
         website_session_id
