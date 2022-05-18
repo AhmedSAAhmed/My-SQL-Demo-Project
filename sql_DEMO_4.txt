@@ -24,7 +24,6 @@ from website_pageviews
 
 --------------------------------------------------------------------------
 --Building conversion funnel
-
 SELECT 
    website_sessions.website_session_id,
    website_pageviews.pageview_url,
