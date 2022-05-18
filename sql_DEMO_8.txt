@@ -1,7 +1,7 @@
 #identify rapeated customers
 
 select *
-from website_sessions
+from website_sessions;
 
 
 
